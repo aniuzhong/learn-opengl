@@ -12,3 +12,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS Core Gui OpenGL OpenGLWidgets Widgets)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/1.getting_started/1.2.hello_window_clear)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/1.getting_started/2.2.hello_triangle_indexed)
