@@ -2,14 +2,47 @@
 
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent)
+    , m_shape(Shape::NONE)
 {
 }
 
 GLWidget::~GLWidget()
 {
+    makeCurrent();
+
     glDeleteVertexArrays(1, &m_VAO);
     glDeleteBuffers(1, &m_VBO);
     glDeleteBuffers(1, &m_EBO);
+
+    doneCurrent();
+}
+
+void GLWidget::drawShape(Shape shape)
+{
+    m_shape = shape;
+    update();
+}
+
+void GLWidget::setPolygonMode(enum PolygonMode mode)
+{
+    makeCurrent();
+
+    switch (mode)
+    {
+    case PolygonMode::FILL:
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        break;
+    case PolygonMode::LINE:
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        break;
+    case PolygonMode::POINT:
+        glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+    default:
+        break;
+    }
+    update();
+
+    doneCurrent();
 }
 
 void GLWidget::initializeGL()
@@ -60,8 +93,6 @@ void GLWidget::initializeGL()
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
     glBindVertexArray(0);
-
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 void GLWidget::paintGL()
@@ -71,7 +102,17 @@ void GLWidget::paintGL()
 
     m_program.bind();
     glBindVertexArray(m_VAO);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    switch (m_shape)
+    {
+    case Shape::NONE:
+        break;
+    case Shape::RECTANGLE:
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        break;
+    default:
+        break;
+    }
 
     // QMetaObject::invokeMethod(this, "update", Qt::QueuedConnection);
 }
@@ -80,3 +121,4 @@ void GLWidget::resizeGL(int w, int h)
 {
     glViewport(0, 0, w, h);
 }
+

@@ -5,15 +5,31 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLFunctions_3_3_Core>
-#include <QOpenGLVertexArrayObject>
 
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
 {
     Q_OBJECT
 
 public:
+    enum class Shape
+    {
+        NONE,
+        RECTANGLE
+    };
+
+    enum class PolygonMode
+    {
+        POINT,
+        LINE,
+        FILL,
+    };
+
+public:
     explicit GLWidget(QWidget *parent = nullptr);
     ~GLWidget();
+
+    void drawShape(enum Shape shape);
+    void setPolygonMode(enum PolygonMode mode);
 
 protected:
     void initializeGL() override;
@@ -21,10 +37,11 @@ protected:
     void resizeGL(int w, int h) override;
 
 private:
-    GLuint               m_VAO;
-    GLuint               m_VBO;
-    GLuint               m_EBO;
+    GLuint m_VAO;
+    GLuint m_VBO;
+    GLuint m_EBO;
     QOpenGLShaderProgram m_program;
+    enum Shape m_shape;
 };
 
 #endif // GLWIDGET_H

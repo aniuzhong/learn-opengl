@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(LearnOpenGL LANGUAGES C CXX)
+project(learn-opengl LANGUAGES C CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)

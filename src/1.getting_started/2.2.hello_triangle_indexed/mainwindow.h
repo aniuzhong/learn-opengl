@@ -17,6 +17,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButtonDrawRectangle_clicked();
+    void on_pushButtonClearScreen_clicked();
+
+    void on_comboBoxPolygonMode_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 };

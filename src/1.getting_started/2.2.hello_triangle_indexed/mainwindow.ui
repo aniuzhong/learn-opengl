@@ -16,25 +16,48 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QPushButton" name="pushButtonExercise1">
+     <widget class="QPushButton" name="pushButtonDrawRectangle">
       <property name="text">
-       <string>2.3.hello_triangle_exercise1</string>
+       <string>Draw Rectangle</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QPushButton" name="pushButtonExercise2">
+     <widget class="QPushButton" name="pushButtonClearScreen">
       <property name="text">
-       <string>2.4.hello_triangle_exercise2</string>
+       <string>Clear Screen</string>
       </property>
      </widget>
     </item>
     <item row="0" column="2">
-     <widget class="QPushButton" name="pushButtonExercise3">
-      <property name="text">
-       <string>2.5.hello_triangle_exercise3</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayoutPolygonMode">
+      <item>
+       <widget class="QLabel" name="labelPolygonMode">
+        <property name="text">
+         <string>Polygon Mode:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxPolygonMode">
+        <item>
+         <property name="text">
+          <string>Point</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Line</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Fill</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item row="1" column="0" colspan="3">
      <widget class="GLWidget" name="openGLWidget"/>
