@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>480</width>
+    <height>360</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,34 +30,11 @@
      </widget>
     </item>
     <item row="0" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayoutPolygonMode">
-      <item>
-       <widget class="QLabel" name="labelPolygonMode">
-        <property name="text">
-         <string>Polygon Mode:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBoxPolygonMode">
-        <item>
-         <property name="text">
-          <string>Point</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Line</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Fill</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QCheckBox" name="checkBoxWireFrame">
+      <property name="text">
+       <string>Wire Frame Mode</string>
+      </property>
+     </widget>
     </item>
     <item row="1" column="0" colspan="3">
      <widget class="GLWidget" name="openGLWidget"/>
@@ -69,7 +46,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>480</width>
      <height>24</height>
     </rect>
    </property>

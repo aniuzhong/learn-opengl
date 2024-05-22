@@ -25,21 +25,15 @@ void MainWindow::on_pushButtonClearScreen_clicked()
 }
 
 
-void MainWindow::on_comboBoxPolygonMode_currentIndexChanged(int index)
+void MainWindow::on_checkBoxWireFrame_stateChanged(int state)
 {
-    switch (index)
+    if (state == Qt::Checked)
     {
-    case 1:
-        ui->openGLWidget->setPolygonMode(GLWidget::PolygonMode::POINT);
-        break;
-    case 2:
-        ui->openGLWidget->setPolygonMode(GLWidget::PolygonMode::LINE);
-        break;
-    case 3:
-        ui->openGLWidget->setPolygonMode(GLWidget::PolygonMode::FILL);
-        break;
-    default:
-        break;
+        ui->openGLWidget->setWireFrame(true);
+    }
+    else if (state == Qt::Unchecked)
+    {
+        ui->openGLWidget->setWireFrame(false);
     }
 }
 

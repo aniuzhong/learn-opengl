@@ -23,23 +23,15 @@ void GLWidget::drawShape(Shape shape)
     update();
 }
 
-void GLWidget::setPolygonMode(enum PolygonMode mode)
+void GLWidget::setWireFrame(bool isWireFrame)
 {
     makeCurrent();
 
-    switch (mode)
-    {
-    case PolygonMode::FILL:
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-        break;
-    case PolygonMode::LINE:
+    if (isWireFrame)
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        break;
-    case PolygonMode::POINT:
-        glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-    default:
-        break;
-    }
+    else
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
     update();
 
     doneCurrent();

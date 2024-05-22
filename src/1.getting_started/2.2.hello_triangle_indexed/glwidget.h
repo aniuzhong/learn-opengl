@@ -6,7 +6,8 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLFunctions_3_3_Core>
 
-class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
+class GLWidget : public QOpenGLWidget,
+                 protected QOpenGLFunctions_3_3_Core
 {
     Q_OBJECT
 
@@ -17,19 +18,12 @@ public:
         RECTANGLE
     };
 
-    enum class PolygonMode
-    {
-        POINT,
-        LINE,
-        FILL,
-    };
-
 public:
     explicit GLWidget(QWidget *parent = nullptr);
     ~GLWidget();
 
     void drawShape(enum Shape shape);
-    void setPolygonMode(enum PolygonMode mode);
+    void setWireFrame(bool isWireFrame);
 
 protected:
     void initializeGL() override;

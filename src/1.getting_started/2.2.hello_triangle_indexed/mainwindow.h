@@ -20,8 +20,7 @@ public:
 private slots:
     void on_pushButtonDrawRectangle_clicked();
     void on_pushButtonClearScreen_clicked();
-
-    void on_comboBoxPolygonMode_currentIndexChanged(int index);
+    void on_checkBoxWireFrame_stateChanged(int state);
 
 private:
     Ui::MainWindow *ui;
