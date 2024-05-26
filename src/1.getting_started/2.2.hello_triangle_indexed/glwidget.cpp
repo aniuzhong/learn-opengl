@@ -10,7 +10,6 @@ GLWidget::~GLWidget()
 {
     makeCurrent();
 
-    glDeleteVertexArrays(1, &m_VAO);
     glDeleteBuffers(1, &m_VBO);
     glDeleteBuffers(1, &m_EBO);
 
@@ -60,8 +59,8 @@ void GLWidget::initializeGL()
     };
 
     // bind the Vertex Array Object first,
-    glGenVertexArrays(1, &m_VAO);
-    glBindVertexArray(m_VAO);
+    m_vao.create();
+    QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
 
     // then bind and set vertex buffer(s),
     glGenBuffers(1, &m_VBO);
@@ -81,10 +80,6 @@ void GLWidget::initializeGL()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // REMEMBER: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
-
-    // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-    // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
-    glBindVertexArray(0);
 }
 
 void GLWidget::paintGL()
@@ -93,7 +88,7 @@ void GLWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT);
 
     m_program.bind();
-    glBindVertexArray(m_VAO);
+    QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
 
     switch (m_shape)
     {

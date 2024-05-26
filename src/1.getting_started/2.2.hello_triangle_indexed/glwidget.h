@@ -4,6 +4,7 @@
 #include <QOpenGLWidget>
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
+#include <QOpenGLVertexArrayObject>
 #include <QOpenGLFunctions_3_3_Core>
 
 class GLWidget : public QOpenGLWidget,
@@ -31,10 +32,11 @@ protected:
     void resizeGL(int w, int h) override;
 
 private:
-    GLuint m_VAO;
     GLuint m_VBO;
     GLuint m_EBO;
     QOpenGLShaderProgram m_program;
+    QOpenGLVertexArrayObject m_vao;
+    QOpenGLBuffer m_logoVbo;
     enum Shape m_shape;
 };
 
